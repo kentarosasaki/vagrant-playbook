@@ -1,0 +1,17 @@
+---
+#- name: Ensure temp download directory exist
+#  file:
+#    state: directory
+#    path: "{{ vagrant_tmp_dir }}"
+
+- name: Download vagrant
+  get_url:
+    url: "{{ vagrant_url_rpm }}"
+    dest: "{{ vagrant_tmp_rpm }}"
+    checksum: sha256:df28c4ba7420dc6983955cf3af66dddddd892ad852154e9b9dbcd1acbebc083c
+    validate_certs: "no"
+
+#- name: Install vagrant for RedHat OS family
+#  yum:
+#    name: "{{ vagrant_tmp_rpm }}"
+
