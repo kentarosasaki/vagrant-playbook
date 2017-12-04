@@ -1,0 +1,8 @@
+---
+- name: Install vagrant
+  gather_facts: True
+  hosts: "vagrant"
+  become: True
+  roles:
+    - check-requirements
+
