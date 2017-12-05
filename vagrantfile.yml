@@ -1,8 +1,8 @@
 ---
-- name: Check available disk space
+- name: Deploy Vagrantfile
   gather_facts: True
   hosts: "vagrant"
   become: False
   roles:
-    - diskspace
+    - vagrantfile
 
