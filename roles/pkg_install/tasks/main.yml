@@ -1,9 +1,9 @@
 ---
--name: Disable SELinux
+- name: Disable SELinux (Apply at next reboot)
   selinux:
     state: disabled
 
--name: Set ipv6 on in /proc and in the sysctl file and reload if necessary
+- name: Set ipv6 on in /proc and in the sysctl file and reload if necessary
   sysctl:
     name: net.ipv6.conf.all.disable_ipv6
     value: 1
@@ -37,4 +37,4 @@
   retries: 5
   delay: 2
   with_items:
-    - {{ vagrant_tmp_rpm }}
+    - "{{ vagrant_tmp_rpm }}"
