@@ -3,7 +3,8 @@
   assert:
     that:
       - (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial') or
-        (ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7')
+        (ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7') or
+        (ansible_distribution == "MacOSX" and {{ ansible_distribution_version | version_compare('10.11', '>=') }})
     msg: "The only supported platforms for this release are Ubuntu 16.04 LTS (Xenial) and CentOS 7 (WIP)"
 
 - name: Identify the space available in /
@@ -14,8 +15,10 @@
   shell: |
     if [[ $(df -T / | tail -n 1 | awk '{print $2}') == "btrfs" ]]; then
         btrfs fi usage --kbytes / | awk '/^.*Free / {print $3}'| sed 's/\..*//'
-    else
+    elif [[ ${OSTYPE} == "linux*" ]]; then
         df -BK -P / | awk '!/^Filesystem/ {print $4}' | sed 's/K//'
+    else
+        df -k -P / | awk '!/^Filesystem/ {print $4}'
     fi
   changed_when: false
   register: root_space_available
