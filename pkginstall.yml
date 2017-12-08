@@ -1,8 +1,8 @@
 ---
-- name: Install vagrant
+- name: Install required packages
   gather_facts: True
   hosts: "vagrant"
   become: True
   roles:
-    - pkg_install
+    - pkginstall
 
