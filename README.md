@@ -1,2 +1,2 @@
 # vagrant-playbook
-Sample ansible playbook for installing Vagrant
+Ansible Playbook for bootstrapping host

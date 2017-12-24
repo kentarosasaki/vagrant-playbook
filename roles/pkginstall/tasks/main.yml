@@ -11,7 +11,7 @@
     state: present
     reload: yes
 
-- name: check firewalld is installed or not
+- name: Check firewalld is installed or not
   shell: which firewalld
   register: result
   ignore_errors: True
