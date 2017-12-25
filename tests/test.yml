@@ -1,6 +1,8 @@
 ---
 - hosts: all
-
+  vars:
+    # Default root partition size of container is 10GB
+    bootstrap_host_data_disk_min_size: 5
   roles:
     - diskspace
     - pkginstall
