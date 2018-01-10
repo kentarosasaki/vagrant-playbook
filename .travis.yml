@@ -17,5 +17,6 @@ script:
 
   # Ensure Vagrant is installed.
   - 'docker exec --tty ${container_id} env TERM=xterm which vagrant'
+  - 'docker exec --tty ${container_id} env TERM=xterm vagrant list-commands'
   - 'docker exec --tty ${container_id} env TERM=xterm ls /root/vagrant/infraci/Vagrantfile'
 
